@@ -13,7 +13,7 @@ const updateTransaction = async (req, res) => {
     }
 
     const existing = await transactions.findOne({
-      _id: new ObjectId.createFromHexString(serverId),
+      _id:ObjectId.createFromHexString(serverId),
       userId: req.userId,
     });
 
@@ -24,7 +24,7 @@ const updateTransaction = async (req, res) => {
     const newVersion = parseInt(existing.version || "1") + 1;
 
     await transactions.updateOne(
-      { _id: new ObjectId.createFromHexString(serverId), userId: req.userId },
+      { _id:ObjectId.createFromHexString(serverId), userId: req.userId },
       {
         $set: {
           amount,

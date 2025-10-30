@@ -12,7 +12,7 @@ const deleteTransaction = async (req, res) => {
     }
 
     const result = await transactions.deleteOne({
-      _id: new ObjectId.createFromHexString(serverId),
+      _id:ObjectId.createFromHexString(serverId),
       userId: req.userId,
     });
 
