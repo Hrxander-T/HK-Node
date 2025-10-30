@@ -4,7 +4,7 @@ import { getTransactionsCollection } from "#v1/models/transactionsModel.js";
 // ✅ Add Transaction (or update if exists)
 const addTransaction = async (req, res) => {
   try {
-    const { amount, description, categoryID, serverId } = req.body;
+    const { amount, description, categoryId, serverId } = req.body;
     const transactions = getTransactionsCollection();
 
     // Check if this transaction already exists (same serverId)
@@ -24,7 +24,7 @@ const addTransaction = async (req, res) => {
           $set: {
             amount,
             description,
-            categoryID,
+            categoryId,
             date: new Date(),
             version: newVersion.toString(),
           },
@@ -43,7 +43,7 @@ const addTransaction = async (req, res) => {
       userId: req.userId,
       amount,
       description,
-      categoryID,
+      categoryId,
       version: newVersion.toString(),
       date: new Date(),
     };
