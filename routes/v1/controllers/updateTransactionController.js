@@ -5,7 +5,7 @@ import { getTransactionsCollection } from "#v1/models/transactionsModel.js";
 const updateTransaction = async (req, res) => {
   try {
     const { serverId } = req.params;
-    const { amount, description, categoryID } = req.body;
+    const { amount, description, categoryId } = req.body;
     const transactions = getTransactionsCollection();
 
     if (!ObjectId.isValid(serverId)) {
@@ -29,7 +29,7 @@ const updateTransaction = async (req, res) => {
         $set: {
           amount,
           description,
-          categoryID,
+          categoryId,
           version: newVersion.toString(),
           date: new Date(),
         },
