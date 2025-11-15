@@ -11,7 +11,7 @@ const addCategory = async (req, res) => {
       userId: req.userId,
       name,
       type,
-      lastModified,
+      lastModified: new Date(lastModified),
       uuid
     };
 
