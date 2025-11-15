@@ -3,7 +3,7 @@ import { getCategoriesCollection } from "#v1/models/categoriesModel.js";
 
 const addCategory = async (req, res) => {
   try {
-    const { name, type ,lastModified} = req.body;
+    const { name, type, uuid, lastModified } = req.body;
     const categories = getCategoriesCollection();
 
     // Create new Category
@@ -12,6 +12,7 @@ const addCategory = async (req, res) => {
       name,
       type,
       lastModified,
+      uuid
     };
 
     const result = await categories.insertOne(newCategory);
@@ -39,7 +40,7 @@ const getCategories = async (req, res) => {
     if (modifiedSince) {
       query.lastModified = { $gt: new Date(modifiedSince) };
     }
-    
+
     // 4. Find all records matching the query
     const categories = getCategoriesCollection();
     const list = await categories.find(query).toArray();
@@ -84,7 +85,7 @@ const deleteCategories = async (req, res) => {
 const updateCategory = async (req, res) => {
   try {
     const { serverId } = req.params;
-    const { name, type, lastModified } = req.body;
+    const { name, type,uuid, lastModified } = req.body;
     const categories = getCategoriesCollection();
 
     if (!ObjectId.isValid(serverId)) {
@@ -115,6 +116,7 @@ const updateCategory = async (req, res) => {
           name,
           type,
           lastModified: clientLastModified,
+          uuid
         },
       }
     );
